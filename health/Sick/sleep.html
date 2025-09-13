@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>咳嗽｜自主健康管理網站</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- 站點導覽 -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="../index.php" class="text-lg sm:text-xl font-semibold tracking-wide text-brand-700 hover:text-brand-800">自主健康管理</a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
+          <a href="../index.php" class="text-sm font-medium text-gray-700 hover:text-brand-700">Home</a>
+
+          <!-- 家醫科 dropdown（桌機，穩定可點/可滑） -->
+<div id="familyWrap" class="relative">
+    <button id="familyBtn"
+            class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand-700"
+            aria-haspopup="true" aria-expanded="false">
+      家醫科
+      <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+  
+    <!-- 橋接層：消除按鈕與選單間的空隙，避免瞬間關閉 -->
+    <div class="absolute left-0 top-full pt-2 z-50">
+      <div id="familyMenu"
+           class="hidden w-64 rounded-xl border border-gray-200 bg-white shadow-lg p-3">
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/cough.php">咳嗽</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/blood.php">高血壓</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/diabetes.php">糖尿病</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/hdl.php">高血脂</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/thyroid.php">甲狀腺</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/gout.php">痛風</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/uti.php">泌尿道感染</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/o.php">支氣管炎</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/oO.php">支氣管擴張症</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/astha.php">哮喘</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/uk.php">肺炎</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/chestpaim.php">胸悶</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/sleep.php">打鼾和睡眠呼吸終止症</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700" href="../Sick/stomach.php">腸胃炎</a>
+      </div>
+    </div>
+  </div>
+  
+
+        <!-- 右側操作 -->
+        <div class="hidden md:flex items-center gap-2">
+          <a href="../admin/login.php" class="inline-flex items-center rounded-lg border border-brand-600 px-3 py-1.5 text-sm font-semibold text-brand-700 hover:bg-brand-50">Sign Up</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button id="mobileBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-gray-600 hover:bg-gray-100" aria-controls="mobileMenu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M3.75 5.25a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75zm0 6a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75zm.75 5.25a.75.75 0 000 1.5h15a.75.75 0 000-1.5h-15z" clip-rule="evenodd" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-100">
+      <div class="px-4 py-3 space-y-2">
+        <a href="../index.php" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+            <span>家醫科</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 group-open:rotate-180 transition"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          </summary>
+          <!-- 家醫科 dropdown -->
+<div class="relative group">
+    <button class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand-700" aria-haspopup="true" aria-expanded="false">
+      家醫科
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+  
+    <!-- 家醫科 dropdown（可點、可滑，穩定不抖動） -->
+<div id="familyWrap" class="relative">
+    <button id="familyBtn"
+            class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand-700"
+            aria-haspopup="true" aria-expanded="false">
+      家醫科
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+  
+    <!-- 橋接層：避免按鈕與選單之間出現「空隙」造成瞬間關閉 -->
+    <div class="absolute left-0 top-full pt-2 z-50">
+      <div id="familyMenu"
+           class="hidden w-64 rounded-xl border border-gray-200 bg-white shadow-lg p-3">
+        <!-- 每個項目 hover 會變色 -->
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/cough.php">咳嗽</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/blood.php">高血壓</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/diabetes.php">糖尿病</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/hdl.php">高血脂</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/thyroid.php">甲狀腺</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/gout.php">痛風</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/uti.php">泌尿道感染</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/o.php">支氣管炎</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/oO.php">支氣管擴張症</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/astha.php">哮喘</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/uk.php">肺炎</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/chestpaim.php">胸悶</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/sleep.php">打鼾和睡眠呼吸終止症</a>
+        <a class="block rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+           href="../Sick/stomach.php">腸胃炎</a>
+      </div>
+    </div>
+  </div>
+  
+  </div>
+  
+        </details>
+        <a href="../admin/login.php" class="inline-flex items-center rounded-lg border border-brand-600 px-3 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 內容 -->
+  <main class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-center text-3xl font-bold text-gray-900">打鼾和睡眠呼吸中止症</h1>
+
+    <h2 class="mt-8 text-center text-white text-2xl font-semibold bg-gray-800 rounded-xl px-4 py-2">科普</h2>
+    <section class="mt-4 rounded-2xl border-4 border-gray-700 bg-white p-5 text-gray-800">
+
+    <h2><br>
+    打鼾代表甚麼:<br>
+打呼是危險的訊號。研究顯示，50% 打鼾者都是先打呼，接著產生睡眠呼吸暫停，<br>
+可能導致心臟、高血壓、腦溢血、中風等疾病，對生命恐將造成威脅，嚴重者甚至會半夜猝死。<br>
+打鼾大部分的原因是上呼吸道出現阻力，可能是喉嚨或是鼻子後側的結構發生問題，<br>
+嚴重的打鼾可能伴隨而來的是呼吸暫停或是呼吸中止的危險；<br>
+這類問題可分為中樞性、阻塞性及上呼吸道阻力症群。<br><br>
+睡眠呼吸中止症初期症狀:<br>
+睡眠呼吸中止症的病患幾乎都會打鼾。由於病患睡眠常常被中斷，因而睡眠不足，<br>
+使得病患容易疲倦、睡眠中斷、多夢；<br>
+此外，也會發生睡眠中上氣不接下氣、夜晚常反覆的醒來、日間疲倦、打瞌睡、早晨起床會頭痛、<br>
+情緒容易低落或記憶力不佳等情況。<br><br>
+1. 阻塞型睡眠呼吸中止症：<br>
+　最常見的一種，約有九成患者是屬於此類別。起因是咽喉附近的軟組織阻塞呼吸道，<br>
+　使上呼吸道變得較狹窄，進而引發鼾聲與呼吸中止(如下圖)。<br>
+　上呼吸道結構異常者（如鼻中膈彎曲、鼻甲肥大、鼻息肉增生、懸雍垂過長、扁桃腺肥大、舌根肥大等）、<br>
+　呼吸道肌肉過度鬆弛與肥胖等也是常見的誘因。 <br>
+2. 中樞型睡眠呼吸中止症：<br>
+　由於腦部受到中風、創傷或其他問題影響，大腦不能發出呼吸指令而形成睡眠呼吸中止。<br>
+　另一種是中樞神經系統發生問題，呼吸訊息指令傳導異常，無法產生呼吸動作而導致呼吸停止。<br>   
+3. 混合型睡眠呼吸中止症： 同時患有阻塞型與中樞型睡眠呼吸中止。<br><br>
+<h7>以下是呼吸中止症高危險群:<br>
+1.性別：男性約為女性的 2-8 倍。  <br>
+2.肥胖：大於理想體重的 120% 以上者，較有危險性。 <br>
+3.頸圍：男大於 43 公分，女性大於 38 公分者。 <br>
+4.扁桃肥大、鼻中隔彎曲、或下顎後縮或過小。<br>
+5.特殊基因疾病：例如 Treacher Collins, Down syndrome, Aperts syndrome, achondrophasia <br>
+6.內分泌疾病：如甲狀腺功能低下、肢端肥大症 。<br>
+7.酒精、鎮定劑及安眠藥使用者。</h7><br>
+
+
+
+</section>
+<p class="mt-6 text-center text-sm text-gray-600 border-4 border-gray-700 rounded-xl bg-white px-4 py-2">
+    資料來源：衛生福利部桃園醫院 、亞洲大學醫院、馬偕紀念醫院、三軍總醫院</p>
+
+  <!-- Footer -->
+<footer class="border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <p class="text-sm text-gray-500">© <span id="year"></span> 自主健康管理 111434001黃宥惟</p>
+    </div>
+  </footer>
+
+  <!-- JS：手機選單、年份 -->
+  <script>
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn?.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isHidden);
+      mobileBtn.setAttribute('aria-expanded', String(isHidden));
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- JS：家醫科下拉（桌機） -->
+  <script>
+    const familyWrap = document.getElementById('familyWrap');
+    const familyBtn  = document.getElementById('familyBtn');
+    const familyMenu = document.getElementById('familyMenu');
+    let hideTimer;
+
+    function openMenu() {
+      clearTimeout(hideTimer);
+      familyMenu.classList.remove('hidden');
+      familyBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      hideTimer = setTimeout(() => {
+        familyMenu.classList.add('hidden');
+        familyBtn.setAttribute('aria-expanded', 'false');
+      }, 150); // 留緩衝，滑鼠移動不易誤關
+    }
+
+    familyWrap.addEventListener('mouseenter', openMenu);
+    familyWrap.addEventListener('mouseleave', closeMenu);
+
+    familyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (familyMenu.classList.contains('hidden')) openMenu(); else closeMenu();
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!familyWrap.contains(e.target)) {
+        familyMenu.classList.add('hidden');
+        familyBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>

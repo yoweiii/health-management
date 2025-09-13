@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>自主健康管理網站</title>
+
+  <!-- Tailwind CDN (快速開發版) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // 可在這裡客製 Tailwind（可選）
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              200: '#bfdbfe',
+              300: '#93c5fd',
+              400: '#60a5fa',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- 站點頂部導覽 -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Logo / Brand -->
+        <a href="index.html" class="text-lg sm:text-xl font-semibold tracking-wide text-brand-700 hover:text-brand-800">自主健康管理</a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-6" aria-label="Primary">
+          <a href="index.html" class="text-sm font-medium text-gray-700 hover:text-brand-700">Home</a>
+
+          <!-- 家醫科 dropdown -->
+          <div class="relative group">
+            <button class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand-700" aria-haspopup="true" aria-expanded="false">
+              家醫科
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+            </button>
+            <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition pointer-events-none group-hover:pointer-events-auto absolute left-0 mt-3 w-64 rounded-xl border border-gray-200 bg-white shadow-lg p-3 grid grid-cols-1 gap-1">
+              <a class="dropdown-link" href="../Sick/cough.html">咳嗽</a>
+              <a class="dropdown-link" href="Sick/blood.html">高血壓</a>
+              <a class="dropdown-link" href="Sick/diabetes.html">糖尿病</a>
+              <a class="dropdown-link" href="Sick/hdl.html">高血脂</a>
+              <a class="dropdown-link" href="Sick/thyroid.html">甲狀腺</a>
+              <a class="dropdown-link" href="Sick/gout.html">痛風</a>
+              <a class="dropdown-link" href="Sick/uti.html">泌尿道感染</a>
+              <a class="dropdown-link" href="Sick/o.html">支氣管炎</a>
+              <a class="dropdown-link" href="Sick/oO.html">支氣管擴張症</a>
+              <a class="dropdown-link" href="Sick/astha.html">哮喘</a>
+              <a class="dropdown-link" href="Sick/uk.html">肺炎</a>
+              <a class="dropdown-link" href="Sick/chestpaim.html">胸悶</a>
+              <a class="dropdown-link" href="Sick/sleep.html">打鼾和睡眠呼吸終止症</a>
+              <a class="dropdown-link" href="Sick/stomach.html">腸胃炎</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- 右側操作 -->
+        <div class="hidden md:flex items-center gap-2">
+          <a href="admin/login.php" class="inline-flex items-center rounded-lg border border-brand-600 px-3 py-1.5 text-sm font-semibold text-brand-700 hover:bg-brand-50">Sign Up</a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button id="mobileBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-gray-600 hover:bg-gray-100" aria-controls="mobileMenu" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6"><path fill-rule="evenodd" d="M3.75 5.25a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75zm0 6a.75.75 0 01.75-.75h15a.75.75 0 010 1.5h-15a.75.75 0 01-.75-.75zm.75 5.25a.75.75 0 000 1.5h15a.75.75 0 000-1.5h-15z" clip-rule="evenodd" /></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-gray-100">
+      <div class="px-4 py-3 space-y-2">
+        <a href="index.html" class="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <details class="group">
+          <summary class="flex cursor-pointer list-none items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+            <span>家醫科</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 group-open:rotate-180 transition"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/></svg>
+          </summary>
+          <div class="mt-2 grid grid-cols-2 gap-2 px-3">
+            <a class="dropdown-chip" href="../Sick/cough.html">咳嗽</a>
+            <a class="dropdown-chip" href="Sick/blood.html">高血壓</a>
+            <a class="dropdown-chip" href="Sick/diabetes.html">糖尿病</a>
+            <a class="dropdown-chip" href="Sick/hdl.html">高血脂</a>
+            <a class="dropdown-chip" href="Sick/thyroid.html">甲狀腺</a>
+            <a class="dropdown-chip" href="Sick/gout.html">痛風</a>
+            <a class="dropdown-chip" href="Sick/uti.html">泌尿道感染</a>
+            <a class="dropdown-chip" href="Sick/o.html">支氣管炎</a>
+            <a class="dropdown-chip" href="Sick/oO.html">支氣管擴張症</a>
+            <a class="dropdown-chip" href="Sick/astha.html">哮喘</a>
+            <a class="dropdown-chip" href="Sick/uk.html">肺炎</a>
+            <a class="dropdown-chip" href="Sick/chestpaim.html">胸悶</a>
+            <a class="dropdown-chip" href="Sick/sleep.html">打鼾和睡眠呼吸終止症</a>
+            <a class="dropdown-chip" href="Sick/stomach.html">腸胃炎</a>
+          </div>
+        </details>
+        <a href="admin/login.php" class="inline-flex items-center rounded-lg border border-brand-600 px-3 py-2 text-sm font-semibold text-brand-700 hover:bg-brand-50">Sign Up</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="relative" id="dropdownWrapper">
+    <!-- 觸發按鈕 -->
+    <button id="dropdownBtn"
+      class="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-brand-700"
+      aria-haspopup="true" aria-expanded="false">
+      家醫科
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+  
+    
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">一起建立更穩定的 <span class="text-brand-700">自主健康管理</span></h1>
+          <p class="mt-4 text-base sm:text-lg text-gray-600">快速導覽常見症狀與衛教主題，取得正確的照護資訊與自我管理工具。</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#catalog" class="inline-flex items-center rounded-xl bg-brand-600 px-4 py-2.5 text-white font-semibold shadow hover:bg-brand-700">開始瀏覽</a>
+            <a href="admin/login.php" class="inline-flex items-center rounded-xl border border-gray-300 px-4 py-2.5 font-semibold text-gray-700 hover:bg-gray-50">會員註冊</a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="aspect-[16/10] w-full rounded-2xl bg-gradient-to-br from-brand-100 to-white ring-1 ring-inset ring-brand-200/60 flex items-center justify-center">
+            <span class="text-brand-700/70 font-semibold">健康圖文與工具入口</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 卡片導覽（原首頁圖片群） -->
+  <section id="catalog" class="py-6 sm:py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">常見科別與症狀</h2>
+
+      <!-- 第一列（7 項） -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
+        <a href="Sick/blood.html" class="card-link">
+          <img src="images/blood.jpg" alt="高血壓" class="card-img">
+          <p class="card-title">高血壓</p>
+        </a>
+        <a href="Sick/diabetes.html" class="card-link">
+          <img src="images/diabetes.png" alt="糖尿病" class="card-img">
+          <p class="card-title">糖尿病</p>
+        </a>
+        <a href="Sick/hdl.html" class="card-link">
+          <img src="images/hdl.png" alt="高血脂" class="card-img">
+          <p class="card-title">高血脂</p>
+        </a>
+        <a href="Sick/thyroid.html" class="card-link">
+          <img src="images/thyroid.jpg" alt="甲狀腺" class="card-img">
+          <p class="card-title">甲狀腺</p>
+        </a>
+        <a href="Sick/gout.html" class="card-link">
+          <img src="images/gout.jpg" alt="痛風" class="card-img">
+          <p class="card-title">痛風</p>
+        </a>
+        <a href="Sick/uti.html" class="card-link">
+          <img src="images/uti.jpg" alt="泌尿道感染" class="card-img">
+          <p class="card-title">泌尿道感染</p>
+        </a>
+        <a href="Sick/o.html" class="card-link">
+          <img src="images/o.jpg" alt="支氣管炎" class="card-img">
+          <p class="card-title">支氣管炎</p>
+        </a>
+      </div>
+
+      <!-- 第二列（7 項） -->
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
+        <a href="Sick/cough.html" class="card-link">
+          <img src="images/cough.html" alt="咳嗽" class="card-img">
+          <p class="card-title">咳嗽</p>
+        </a>
+        <a href="Sick/astha.html" class="card-link">
+          <img src="images/astha.html" alt="哮喘" class="card-img">
+          <p class="card-title">哮喘</p>
+        </a>
+        <a href="Sick/uk.html" class="card-link">
+          <img src="images/uk.png" alt="肺炎" class="card-img">
+          <p class="card-title">肺炎</p>
+        </a>
+        <a href="Sick/stomach.html" class="card-link">
+          <img src="images/stomach.jpg" alt="腸胃炎" class="card-img">
+          <p class="card-title">腸胃炎</p>
+        </a>
+        <a href="Sick/chestpaim.html" class="card-link">
+          <img src="images/chest pain.jpg" alt="胸悶" class="card-img">
+          <p class="card-title">胸悶</p>
+        </a>
+        <a href="Sick/sleep.html" class="card-link">
+          <img src="images/SLEEP.jpg" alt="打鼾和睡眠呼吸中止症" class="card-img">
+          <p class="card-title">打鼾和睡眠呼吸中止症</p>
+        </a>
+        <a href="Sick/oO.html" class="card-link">
+          <img src="images/oO.jpg" alt="支氣管擴張症" class="card-img">
+          <p class="card-title">支氣管擴張症</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 新聞 / 三欄資訊卡 -->
+  <section class="py-8 sm:py-12 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- 食藥闢謠 -->
+        <article class="info-card">
+          <h3 class="info-title">食藥闢謠</h3>
+          <ul class="info-list">
+            <li><a title="長期使用軟便劑，會影響腸功能嗎？" href="#">長期使用軟便劑...</a></li>
+            <li><a title="聽說打排卵針會變胖，是真的嗎？" href="#">聽說打排卵針會...</a></li>
+            <li><a title="小孩不敢吞藥，可以把藥磨成粉嗎？" href="#">小孩不敢吞藥可...</a></li>
+            <li><a title="燕麥奶、豆奶可取代鮮奶嗎？" href="#">燕麥奶、豆奶可...</a></li>
+            <li><a title="聽說食物用傳統電鍋保溫就不會壞?" href="#">聽說食物用傳統...</a></li>
+            <li><a title="隱形眼鏡只要泡在免搓洗藥水裡，就可以達到消毒效果?" href="#">隱形眼鏡只要泡...</a></li>
+            <li><a title="優格可以加熱嗎?加熱益生菌會死亡嗎?" href="#">優格可以加熱嗎?...</a></li>
+          </ul>
+          <div class="mt-4"><a href="more/make.php" target="_blank" class="more-btn">了解更多</a></div>
+        </article>
+
+        <!-- 保健闢謠 -->
+        <article class="info-card">
+          <h3 class="info-title">保健闢謠</h3>
+          <ul class="info-list">
+            <li><a title="戒除檳榔之後就不用再作口腔癌篩檢了嗎？" href="#">戒除檳榔之後就...</a></li>
+            <li><a title="得到C型肝炎一輩子不會好?" href="#">得到C型肝炎一...</a></li>
+            <li><a title="有B型肝炎的媽媽不能餵母乳嗎?" href="#">有B型肝炎的媽...</a></li>
+            <li><a title="減重期間為了少吃油脂，因此只吃水煮餐健康嗎?" href="#">減重期間為了少...</a></li>
+            <li><a title="使用電子煙不會成癮?也不會影響大腦的發育嗎?" href="#">使用電子煙不會...</a></li>
+            <li><a title="有做胸部低劑量電腦斷層檢查(LDCT)，就可以放心吸菸了?" href="#">有做胸部低劑量...</a></li>
+            <li><a title="血脂異常一定就是膽固醇高嗎?" href="#">血脂異常一定就...</a></li>
+          </ul>
+          <div class="mt-4 flex items-center gap-3">
+            <a href="more/care.php" target="_blank" class="more-btn">了解更多</a>
+            <div id="pagination" class="text-xs text-gray-400"></div>
+          </div>
+        </article>
+
+        <!-- 化妝品闢謠 -->
+        <article class="info-card">
+          <h3 class="info-title">化妝品闢謠</h3>
+          <ul class="info-list">
+            <li><a title="使用化粧品真的能讓妊娠紋消失嗎？" href="#">使用化粧品真的...</a></li>
+            <li><a title="聽說卸粧油可以拿來清粉刺，這是真的嗎?" href="#">聽說卸粧油可以...</a></li>
+            <li><a title="聽說牙膏管底的色條是用來區分成分?" href="#">聽說牙膏管底的...</a></li>
+            <li><a title="牙膏可以拿來用在臉上美白除斑，這是真的嗎?" href="#">牙膏可以拿來用...</a></li>
+            <li><a title="想靠化粧品讓皮膚細胞重生，有可能嗎?" href="#">想靠化粧品讓皮...</a></li>
+            <li><a title="冬天還要使用防曬嗎?" href="#">冬天還要使用防...</a></li>
+            <li><a title="擦防曬護唇膏真的有用嗎?" href="#">擦防曬護唇膏真...</a></li>
+          </ul>
+          <div class="mt-4 flex gap-3">
+            <a href="#" target="_blank" class="more-btn">了解更多</a>
+            <a href="more/eat.php" target="_blank" class="more-btn">更多主題</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁尾 -->
+  <footer class="border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <p class="text-sm text-gray-500">© <span id="year"></span> 自主健康管理 — 以正確資訊陪你照護健康。</p>
+    </div>
+  </footer>
+
+  <!-- 小工具樣式（抽離成原子類，更易重用） -->
+  <style>
+    .dropdown-link { @apply rounded-md px-2.5 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand-700; }
+    .dropdown-chip { @apply inline-flex items-center justify-center rounded-md bg-gray-50 px-2.5 py-2 text-xs text-gray-700 hover:bg-brand-50 hover:text-brand-700 border border-gray-200; }
+    .card-link { @apply group block rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition; }
+    .card-img { @apply aspect-[4/3] w-full object-cover; }
+    .card-title { @apply px-3 py-2 text-sm font-medium text-gray-800 group-hover:text-brand-700; }
+    .info-card { @apply rounded-2xl border border-gray-200 bg-white p-5 shadow-sm; }
+    .info-title { @apply text-lg font-semibold text-gray-900 mb-3; }
+    .info-list { @apply space-y-2 text-sm; }
+    .info-list a { @apply block truncate text-gray-700 hover:text-brand-700; }
+    .more-btn { @apply inline-flex items-center rounded-lg bg-brand-600 px-3 py-2 text-sm font-semibold text-white hover:bg-brand-700; }
+  </style>
+
+  <!-- JS：手機選單、年份 -->
+  <script>
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn?.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', !isHidden);
+      mobileBtn.setAttribute('aria-expanded', String(isHidden));
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
